@@ -2,7 +2,7 @@
 
   programs.bash = {
     enable = true;
-    initExtra = "tty -s || eval \"$(starship init bash)\"";
+    initExtra = "[[ $(tty) =~ ^/dev/pts/[0-9]+$ ]] && eval \"$(starship init bash)\"";
     profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
         exec hyprland
