@@ -6,6 +6,7 @@
     ./dconf.nix
     ./dunst.nix
     ./fonts.nix
+    ./gh.nix
     ./git.nix
     ./gtk.nix
     ./helix.nix
