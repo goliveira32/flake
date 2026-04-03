@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = ", preferred, auto, 1";
+      monitor = ", preferred, auto, auto";
 
       "$terminal" = "alacritty";
       "$launcher" = "pkill rofi || rofi -show drun";
