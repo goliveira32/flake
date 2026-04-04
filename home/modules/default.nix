@@ -16,6 +16,7 @@
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./nushell.nix
+    ./ollama.nix
     ./rofi.nix
     ./starship.nix
     ./xdg.nix
