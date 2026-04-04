@@ -92,6 +92,9 @@
         "$mainMod, J, togglesplit," # Dwindle
         "$mainMod, ESCAPE, exit,"
 
+        "$mainMod, PRINT, exec, grim - | wl-copy"
+        ", PRINT, exec, grim -g \"$(slurp -w 0)\" - | wl-copy"
+
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"

@@ -7,6 +7,9 @@
   home.packages = with pkgs; [
     hyprpicker
     tree
+    grim
+    slurp
+    wl-clipboard-rs
     brightnessctl
     inter
     nerd-fonts.jetbrains-mono
