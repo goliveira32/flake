@@ -14,6 +14,7 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./hyprsunset.nix
     ./nushell.nix
     ./rofi.nix
     ./starship.nix
