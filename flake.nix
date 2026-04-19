@@ -2,6 +2,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     catppuccin.url = "github:catppuccin/nix/release-25.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -9,7 +10,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, catppuccin, home-manager, ... } @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    unstable,
+    catppuccin,
+    home-manager,
+    ...
+  } @ inputs: let
+    unstable = inputs.unstable;
     settings = {
       username = "penguin";
       hostname = "linux";
@@ -31,7 +40,7 @@
               ./home
               catppuccin.homeModules.catppuccin
             ];
-            extraSpecialArgs = { inherit settings; };
+            extraSpecialArgs = { inherit unstable settings; };
           };
         }
       ];
