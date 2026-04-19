@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.helix = {
     enable = true;
@@ -42,7 +43,7 @@
     settings.theme = "custom";
     themes.custom = {
       inherits = "catppuccin_mocha";
-      "ui.background" = {};
+      "ui.background" = { };
     };
   };
 

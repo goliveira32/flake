@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   catppuccin.hyprlock = {
     enable = true;

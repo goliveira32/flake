@@ -1,4 +1,5 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, unstable, ... }:
+{
 
   programs.opencode = {
     enable = true;

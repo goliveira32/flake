@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   home.pointerCursor = {
     size = 26;

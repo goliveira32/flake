@@ -10,42 +10,46 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    unstable,
-    catppuccin,
-    home-manager,
-    ...
-  } @ inputs: let
-    unstable = inputs.unstable;
-    settings = {
-      username = "penguin";
-      hostname = "linux";
-      timezone = "Europe/Lisbon";
-      locale = "en_US.UTF-8";
-      keymap = "pt-latin1";
-      systemState = "25.11";
-      homeState = "25.11";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      unstable,
+      catppuccin,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      unstable = inputs.unstable;
+      settings = {
+        username = "penguin";
+        hostname = "linux";
+        timezone = "Europe/Lisbon";
+        locale = "en_US.UTF-8";
+        keymap = "pt-latin1";
+        systemState = "25.11";
+        homeState = "25.11";
+      };
+    in
+    {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./core
+          home-manager.nixosModules.default
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${settings.username}.imports = [
+                ./home
+                catppuccin.homeModules.catppuccin
+              ];
+              extraSpecialArgs = { inherit unstable settings; };
+            };
+          }
+        ];
+        specialArgs = { inherit settings; };
+      };
     };
-  in {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./core
-        home-manager.nixosModules.default {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${settings.username}.imports = [
-              ./home
-              catppuccin.homeModules.catppuccin
-            ];
-            extraSpecialArgs = { inherit unstable settings; };
-          };
-        }
-      ];
-      specialArgs = { inherit settings; };
-    };
-  };
 
 }

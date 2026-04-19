@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
 
   users.users.${settings.username} = {
     isNormalUser = true;
