@@ -1,5 +1,8 @@
-{ ... }: {
+{ pkgs, unstable, ... }: {
 
-  services.ollama.enable = true;
+  services.ollama = {
+    enable = true;
+    package = unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.ollama;
+  };
 
 }
