@@ -4,8 +4,13 @@
     enable = true;
     defaultEditor = true;
     languages = {
-      language-server.rust-analyzer = with pkgs; {
-        command = "${rust-analyzer}/bin/rust-analyzer";
+      language-server = {
+        rust-analyzer = with pkgs; {
+          command = "${rust-analyzer}/bin/rust-analyzer";
+        };
+        nixd = with pkgs; {
+          command = "${nixd}/bin/nixd";
+        };
       };
       language = [
         {
@@ -23,6 +28,14 @@
             command = "${rustfmt}/bin/rustfmt";
           };
           language-servers = [ "rust-analyzer" ];
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          formatter = with pkgs; {
+            command = "${nixfmt}/bin/nixfmt";
+          };
+          language-servers = [ "nixd" ];
         }
       ];
     };
