@@ -16,6 +16,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
+    ./jujutsu.nix
     ./nushell.nix
     ./ollama.nix
     ./opencode.nix
