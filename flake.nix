@@ -29,6 +29,10 @@
         keymap = "pt-latin1";
         systemState = "25.11";
         homeState = "25.11";
+        development = {
+          username = "goliveira32";
+          email = "goncalo.oliveira@tuta.com";
+        };
       };
     in
     {
