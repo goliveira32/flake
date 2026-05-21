@@ -6,6 +6,9 @@
     defaultEditor = true;
     languages = {
       language-server = {
+        tombi = with pkgs; {
+          command = "${tombi}/bin/tombi";
+        };
         rust-analyzer = with pkgs; {
           command = "${rust-analyzer}/bin/rust-analyzer";
         };
@@ -21,6 +24,19 @@
         {
           name = "typst";
           soft-wrap.enable = true;
+        }
+        {
+          name = "toml";
+          soft-wrap.enable = true;
+          auto-format = true;
+          formatter = with pkgs; {
+            command = "${tombi}/bin/tombi";
+            args = [
+              "format"
+              "-"
+            ];
+          };
+          language-servers = [ "tombi" ];
         }
         {
           name = "rust";
