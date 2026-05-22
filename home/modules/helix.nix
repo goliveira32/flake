@@ -6,6 +6,9 @@
     defaultEditor = true;
     languages = {
       language-server = {
+        marksman = with pkgs; {
+          command = "${marksman}/bin/marksman";
+        };
         tombi = with pkgs; {
           command = "${tombi}/bin/tombi";
         };
@@ -20,6 +23,15 @@
         {
           name = "markdown";
           soft-wrap.enable = true;
+          auto-format = true;
+          formatter = with pkgs; {
+            command = "${prettier}/bin/prettier";
+            args = [
+              "--parser"
+              "markdown"
+            ];
+          };
+          language-servers = [ "marksman" ];
         }
         {
           name = "typst";
