@@ -6,6 +6,7 @@
     package = unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode;
     settings = {
       theme = "catppuccin";
+      autoupdate = false;
       permission."*" = "ask";
     };
   };
