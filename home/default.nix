@@ -20,4 +20,9 @@
 
   home.file.".config/wallpaper.png".source = ./assets/wallpaper.png;
 
+  catppuccin = {
+    enable = true;
+    autoEnable = false;
+  };
+
 }

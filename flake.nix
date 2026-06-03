@@ -1,11 +1,10 @@
 {
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    catppuccin.url = "github:catppuccin/nix";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -14,13 +13,11 @@
     {
       self,
       nixpkgs,
-      unstable,
       catppuccin,
       home-manager,
       ...
-    }@inputs:
+    }:
     let
-      unstable = inputs.unstable;
       settings = {
         username = "penguin";
         hostname = "linux";
@@ -48,7 +45,7 @@
                 ./home
                 catppuccin.homeModules.catppuccin
               ];
-              extraSpecialArgs = { inherit unstable settings; };
+              extraSpecialArgs = { inherit settings; };
             };
           }
         ];
