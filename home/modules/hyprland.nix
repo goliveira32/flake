@@ -1,157 +1,446 @@
-{ ... }:
+{ lib, ... }:
 {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
-      monitor = ", preferred, auto, auto";
-
-      "$terminal" = "alacritty";
-      "$launcher" = "pkill rofi || rofi -show drun";
-      "$lockScreen" = "hyprlock";
-      "$browser" = "flatpak run org.mozilla.firefox";
-
-      "$mainMod" = "SUPER";
-
-      general = {
-        gaps_in = 2;
-        gaps_out = 4;
-        border_size = 2;
-        "col.active_border" = "$accent";
-        "col.inactive_border" = "rgba($baseAlphaaa)";
-        resize_on_border = true;
-        layout = "dwindle";
-      };
-
-      decoration = {
-        rounding = 10;
-        rounding_power = 2;
-        shadow = {
-          range = 4;
-          render_power = 3;
-          color = "rgba(1a1a1aee)";
+    configType = "lua";
+    settings =
+      let
+        mod = "SUPER";
+        terminal = "alacritty";
+        menu = "pkill rofi || rofi -show drun";
+        lock = "hyprlock";
+        browser = "flatpak run org.mozilla.firefox";
+      in
+      {
+        config = {
+          general = {
+            gaps_in = 2;
+            gaps_out = 4;
+            border_size = 2;
+            col = {
+              active_border = lib.generators.mkLuaInline "colors.accent";
+              inactive_border = lib.generators.mkLuaInline "\"rgba(\" .. colors.baseAlpha .. \"aa)\"";
+            };
+            resize_on_border = true;
+          };
+          decoration = {
+            rounding = 10;
+            blur.size = 3;
+          };
+          dwindle.preserve_split = true;
+          input = {
+            kb_layout = "pt";
+            sensitivity = 0.7;
+            touchpad.natural_scroll = true;
+          };
         };
-        blur = {
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
+        bind = [
+          {
+            _args = [
+              "${mod} + RETURN"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${terminal}\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + SUPER_L"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${menu}\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + L"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${lock}\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + B"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${browser}\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + ESCAPE"
+              (lib.generators.mkLuaInline "hl.dsp.exit()")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + Q"
+              (lib.generators.mkLuaInline "hl.dsp.window.close()")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + F"
+              (lib.generators.mkLuaInline "hl.dsp.window.float({ action = \"toggle\" })")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + P"
+              (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + J"
+              (lib.generators.mkLuaInline "hl.dsp.layout(\"togglesplit\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + PRINT"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"grim - | wl-copy\")")
+            ];
+          }
+          {
+            _args = [
+              "PRINT"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"grim -g \\\"$(slurp -w 0)\\\" - | wl-copy\")")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + mouse:272"
+              (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+              { mouse = true; }
+            ];
+          }
+          {
+            _args = [
+              "${mod} + mouse:273"
+              (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+              { mouse = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioRaiseVolume"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+\")")
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioLowerVolume"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\")")
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioMute"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\")")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioMicMute"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle\")")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86MonBrightnessUp"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%+\")")
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86MonBrightnessDown"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%-\")")
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+        ]
+        ++
+          map
+            (dir: {
+              _args = [
+                "${mod} + ${dir}"
+                (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"${dir}\" })")
+              ];
+            })
+            [
+              "left"
+              "right"
+              "up"
+              "down"
+            ]
+        ++ lib.flatten (
+          map (num: [
+            {
+              _args = [
+                "${mod} + ${toString (lib.mod num 10)}"
+                (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = ${toString num} })")
+              ];
+            }
+            {
+              _args = [
+                "${mod} + SHIFT + ${toString (lib.mod num 10)}"
+                (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = ${toString num} })")
+              ];
+            }
+          ]) (lib.range 1 10)
+        );
+        layer_rule = {
+          match.namespace = "rofi";
+          blur = true;
+          ignore_alpha = 0;
         };
-      };
+        window_rule = [
+          # Ignore maximize requests from apps.
+          {
+            match.class = ".*";
+            suppress_event = "maximize";
+          }
 
-      animations = {
-        bezier = [
-          "easeOutQuint,   0.23, 1,    0.32, 1"
-          "easeInOutCubic, 0.65, 0.05, 0.36, 1"
-          "linear,         0,    0,    1,    1"
-          "almostLinear,   0.5,  0.5,  0.75, 1"
-          "quick,          0.15, 0,    0.1,  1"
+          # Fix some dragging issues with XWayland.
+          {
+            match = {
+              class = "^$";
+              title = "^$";
+              xwayland = true;
+              float = true;
+              fullscreen = false;
+              pin = false;
+            };
+            no_focus = true;
+          }
+        ];
+        curve = [
+          {
+            _args = [
+              "easeOutQuint"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.23
+                    1
+                  ]
+                  [
+                    0.32
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "easeInOutCubic"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.65
+                    0.05
+                  ]
+                  [
+                    0.36
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "linear"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0
+                    0
+                  ]
+                  [
+                    1
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "almostLinear"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.5
+                    0.5
+                  ]
+                  [
+                    0.75
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "quick"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.15
+                    0
+                  ]
+                  [
+                    0.1
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "easy"
+              {
+                type = "spring";
+                mass = 1;
+                stiffness = 71.2633;
+                dampening = 15.8273644;
+              }
+            ];
+          }
         ];
         animation = [
-          "global,        1,     10,    default"
-          "border,        1,     5.39,  easeOutQuint"
-          "windows,       1,     4.79,  easeOutQuint"
-          "windowsIn,     1,     4.1,   easeOutQuint, popin 87%"
-          "windowsOut,    1,     1.49,  linear,       popin 87%"
-          "fadeIn,        1,     1.73,  almostLinear"
-          "fadeOut,       1,     1.46,  almostLinear"
-          "fade,          1,     3.03,  quick"
-          "layers,        1,     3.81,  easeOutQuint"
-          "layersIn,      1,     4,     easeOutQuint, fade"
-          "layersOut,     1,     1.5,   linear,       fade"
-          "fadeLayersIn,  1,     1.79,  almostLinear"
-          "fadeLayersOut, 1,     1.39,  almostLinear"
-          "workspaces,    1,     2.5,   easeOutQuint, slide"
-          "workspacesIn,  1,     2.75,  easeOutQuint, slide"
-          "workspacesOut, 1,     2.5,   easeOutQuint, slide"
-          "zoomFactor,    1,     7,     quick"
+          {
+            leaf = "global";
+            enabled = true;
+            speed = 10;
+            bezier = "default";
+          }
+          {
+            leaf = "windows";
+            enabled = true;
+            speed = 4.79;
+            spring = "easy";
+          }
+          {
+            leaf = "windowsIn";
+            enabled = true;
+            speed = 4.1;
+            spring = "easy";
+            style = "popin 87%";
+          }
+          {
+            leaf = "windowsOut";
+            enabled = true;
+            speed = 1.49;
+            bezier = "linear";
+            style = "popin 87%";
+          }
+          {
+            leaf = "layers";
+            enabled = true;
+            speed = 3.81;
+            bezier = "easeOutQuint";
+          }
+          {
+            leaf = "layersIn";
+            enabled = true;
+            speed = 4;
+            bezier = "easeOutQuint";
+            style = "fade";
+          }
+          {
+            leaf = "layersOut";
+            enabled = true;
+            speed = 1.5;
+            bezier = "linear";
+            style = "fade";
+          }
+          {
+            leaf = "fade";
+            enabled = true;
+            speed = 3.03;
+            bezier = "quick";
+          }
+          {
+            leaf = "fadeIn";
+            enabled = true;
+            speed = 1.73;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fadeOut";
+            enabled = true;
+            speed = 1.46;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fadeLayersIn";
+            enabled = true;
+            speed = 1.79;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fadeLayersOut";
+            enabled = true;
+            speed = 1.39;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "border";
+            enabled = true;
+            speed = 5.39;
+            bezier = "easeOutQuint";
+          }
+          {
+            leaf = "workspaces";
+            enabled = true;
+            speed = 2.5;
+            bezier = "easeOutQuint";
+            style = "slide";
+          }
+          {
+            leaf = "workspacesIn";
+            enabled = true;
+            speed = 2.75;
+            bezier = "easeOutQuint";
+            style = "slide";
+          }
+          {
+            leaf = "workspacesOut";
+            enabled = true;
+            speed = 2.5;
+            bezier = "easeOutQuint";
+            style = "slide";
+          }
+          {
+            leaf = "zoomFactor";
+            enabled = true;
+            speed = 7;
+            bezier = "quick";
+          }
         ];
       };
-
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
-
-      master.new_status = "master";
-
-      input = {
-        kb_layout = "pt";
-        follow_mouse = 1;
-        sensitivity = 0.7;
-        touchpad.natural_scroll = true;
-      };
-
-      bind = [
-
-        "$mainMod, RETURN, exec, $terminal"
-        "$mainMod, SUPER_L, exec, $launcher"
-        "$mainMod, L, exec, $lockScreen"
-        "$mainMod, B, exec, $browser"
-        "$mainMod, Q, killactive,"
-        "$mainMod, F, togglefloating,"
-        "$mainMod, P, pseudo," # Dwindle
-        "$mainMod, J, togglesplit," # Dwindle
-        "$mainMod, ESCAPE, exit,"
-
-        "$mainMod, PRINT, exec, grim - | wl-copy"
-        ", PRINT, exec, grim -g \"$(slurp -w 0)\" - | wl-copy"
-
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-      ];
-
-      bindm = [
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-        ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      ];
-
-      layerrule = [
-        "blur, rofi"
-        "ignorezero, rofi"
-      ];
-
-      windowrule = [
-        # Ignore maximize requests from apps.
-        "suppressevent maximize, class:.*"
-
-        # Fix some dragging issues with XWayland.
-        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
-      ];
-    };
   };
 
   catppuccin.hyprland = {

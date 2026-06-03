@@ -9,8 +9,10 @@
 
   services.resolved = {
     enable = true;
-    dnsovertls = "true";
-    domains = [ "~." ];
+    settings.Resolve = {
+      DNSOverTLS = true;
+      Domains = [ "~." ];
+    };
   };
 
 }
