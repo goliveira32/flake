@@ -21,6 +21,7 @@
     ./ollama.nix
     ./opencode.nix
     ./rofi.nix
+    ./ssh.nix
     ./starship.nix
     ./xdg.nix
   ];

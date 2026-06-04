@@ -27,7 +27,7 @@
         systemState = "25.11";
         homeState = "25.11";
         development = {
-          username = "goliveira32";
+          username = "Gonçalo Oliveira";
           email = "goncalo.oliveira@tuta.com";
         };
       };
