@@ -1,6 +1,9 @@
 { ... }:
 {
 
-  programs.gh.enable = true;
+  programs.gh = {
+    enable = true;
+    settings.telemetry = "disabled";
+  };
 
 }
