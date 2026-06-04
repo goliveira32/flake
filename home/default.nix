@@ -22,7 +22,9 @@
 
   catppuccin = {
     enable = true;
-    autoEnable = false;
+    autoEnable = true;
+    accent = "flamingo";
+    flavor = "mocha";
   };
 
 }

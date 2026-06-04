@@ -48,9 +48,4 @@
       };
   };
 
-  catppuccin.rofi = {
-    enable = true;
-    flavor = "mocha";
-  };
-
 }

@@ -443,10 +443,4 @@
       };
   };
 
-  catppuccin.hyprland = {
-    enable = true;
-    accent = "flamingo";
-    flavor = "mocha";
-  };
-
 }

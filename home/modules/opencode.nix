@@ -7,7 +7,6 @@
       autoupdate = false;
       permission."*" = "ask";
     };
-    tui.theme = "catppuccin";
   };
 
 }

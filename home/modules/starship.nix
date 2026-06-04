@@ -115,9 +115,4 @@
     };
   };
 
-  catppuccin.starship = {
-    enable = true;
-    flavor = "mocha";
-  };
-
 }

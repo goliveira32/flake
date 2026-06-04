@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
 
   programs.helix = {
@@ -68,11 +68,13 @@
         }
       ];
     };
-    settings.theme = "custom";
+    settings.theme = lib.mkForce "custom";
     themes.custom = {
-      inherits = "catppuccin_mocha";
+      inherits = "catppuccin-mocha";
       "ui.background" = { };
     };
   };
+
+  catppuccin.helix.useItalics = true;
 
 }

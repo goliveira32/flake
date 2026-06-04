@@ -14,9 +14,4 @@
     };
   };
 
-  catppuccin.nushell = {
-    enable = true;
-    flavor = "mocha";
-  };
-
 }

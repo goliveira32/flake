@@ -18,9 +18,4 @@
     };
   };
 
-  catppuccin.alacritty = {
-    enable = true;
-    flavor = "mocha";
-  };
-
 }

@@ -9,4 +9,6 @@
     };
   };
 
+  catppuccin.gtk.icon.enable = false;
+
 }

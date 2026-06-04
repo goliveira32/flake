@@ -13,7 +13,6 @@
     ./helix.nix
     ./hyprcursor.nix
     ./hyprland.nix
-    ./hyprlock.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./jujutsu.nix
