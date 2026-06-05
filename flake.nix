@@ -45,7 +45,10 @@
                 ./home
                 catppuccin.homeModules.catppuccin
               ];
-              extraSpecialArgs = { inherit settings; };
+              extraSpecialArgs = {
+                inherit settings;
+                assets = ./home/assets;
+              };
             };
           }
         ];

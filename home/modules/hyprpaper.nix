@@ -1,4 +1,4 @@
-{ ... }:
+{ assets, ... }:
 {
 
   services.hyprpaper = {
@@ -7,7 +7,7 @@
       splash = false;
       wallpaper = {
         monitor = "";
-        path = "~/.config/wallpaper.png";
+        path = "${assets}/wallpaper.png";
       };
     };
   };
