@@ -1,12 +1,12 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
   programs.jujutsu = {
     enable = true;
     settings = {
       user = {
-        name = settings.development.username;
-        email = settings.development.email;
+        name = meta.devel.name;
+        email = meta.devel.email;
       };
     };
   };

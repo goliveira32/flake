@@ -1,8 +1,8 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
   networking = {
-    hostName = settings.hostname;
+    hostName = meta.system.hostname;
     wireless.iwd.enable = true;
     nameservers = [ "194.242.2.2#dns.mullvad.net" ];
   };

@@ -1,11 +1,11 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
-  users.users.${settings.username} = {
+  users.users.${meta.system.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
 
-  services.getty.autologinUser = settings.username;
+  services.getty.autologinUser = meta.system.username;
 
 }

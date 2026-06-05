@@ -1,4 +1,4 @@
-{ ... }:
+{ meta, ... }:
 {
 
   programs.ssh = {
@@ -8,7 +8,7 @@
       "github.com" = {
         HostName = "github.com";
         User = "git";
-        IdentityFile = "~/.ssh/github_auth";
+        IdentityFile = meta.devel.github.auth;
       };
       "*" = {
         ForwardAgent = false;

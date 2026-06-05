@@ -1,4 +1,4 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
   programs.git = {
@@ -6,15 +6,15 @@
     settings = {
       init.defaultBranch = "main";
       user = {
-        name = settings.development.username;
-        email = settings.development.email;
+        name = meta.devel.name;
+        email = meta.devel.email;
       };
       gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
     };
     signing = {
       format = "ssh";
       signByDefault = true;
-      key = "~/.ssh/github_sign.pub";
+      key = meta.devel.github.sign;
     };
   };
 

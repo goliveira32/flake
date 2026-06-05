@@ -1,10 +1,10 @@
-{ pkgs, settings, ... }:
+{ pkgs, meta, ... }:
 {
 
   imports = [ ./modules ];
 
   home = {
-    stateVersion = settings.homeState;
+    stateVersion = meta.system.state;
     packages = with pkgs; [
       hyprpicker
       tree

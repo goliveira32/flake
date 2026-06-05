@@ -1,9 +1,9 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
   imports = [ ./modules ];
 
-  system.stateVersion = settings.systemState;
+  system.stateVersion = meta.system.state;
 
   nix.settings.experimental-features = [
     "nix-command"

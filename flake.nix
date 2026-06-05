@@ -18,19 +18,7 @@
       ...
     }:
     let
-      settings = {
-        username = "penguin";
-        hostname = "linux";
-        timezone = "Europe/Lisbon";
-        locale = "en_US.UTF-8";
-        keymap = "pt-latin1";
-        systemState = "25.11";
-        homeState = "25.11";
-        development = {
-          username = "Gonçalo Oliveira";
-          email = "goncalo.oliveira@tuta.com";
-        };
-      };
+      meta = fromTOML (builtins.readFile ./meta.toml);
     in
     {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
@@ -41,18 +29,18 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${settings.username}.imports = [
+              users.${meta.system.username}.imports = [
                 ./home
                 catppuccin.homeModules.catppuccin
               ];
               extraSpecialArgs = {
-                inherit settings;
+                inherit meta;
                 assets = ./home/assets;
               };
             };
           }
         ];
-        specialArgs = { inherit settings; };
+        specialArgs = { inherit meta; };
       };
     };
 

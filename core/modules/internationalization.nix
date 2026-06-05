@@ -1,8 +1,8 @@
-{ settings, ... }:
+{ meta, ... }:
 {
 
-  time.timeZone = settings.timezone;
-  i18n.defaultLocale = settings.locale;
-  console.keyMap = settings.keymap;
+  time.timeZone = meta.system.timezone;
+  i18n.defaultLocale = meta.system.locale;
+  console.keyMap = meta.system.keymap;
 
 }
