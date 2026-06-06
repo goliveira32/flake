@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
 
   wayland.windowManager.hyprland = {
@@ -7,10 +7,10 @@
     settings =
       let
         mod = "SUPER";
-        terminal = "alacritty";
-        menu = "pkill rofi || rofi -show drun";
-        lock = "hyprlock";
-        browser = "flatpak run org.mozilla.firefox";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
+        browser = "${pkgs.flatpak}/bin/flatpak run org.mozilla.firefox";
+        menu = "${pkgs.procps}/bin/pkill rofi || ${pkgs.rofi}/bin/rofi -show drun";
+        lock = "${pkgs.hyprlock}/bin/hyprlock";
       in
       {
         config = {
@@ -44,6 +44,12 @@
           }
           {
             _args = [
+              "${mod} + B"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${browser}\")")
+            ];
+          }
+          {
+            _args = [
               "${mod} + SUPER_L"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${menu}\")")
             ];
@@ -52,12 +58,6 @@
             _args = [
               "${mod} + L"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${lock}\")")
-            ];
-          }
-          {
-            _args = [
-              "${mod} + B"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${browser}\")")
             ];
           }
           {
@@ -93,13 +93,13 @@
           {
             _args = [
               "${mod} + PRINT"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"grim - | wl-copy\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard-rs}/bin/wl-copy\")")
             ];
           }
           {
             _args = [
               "PRINT"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"grim -g \\\"$(slurp -w 0)\\\" - | wl-copy\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.grim}/bin/grim -g \\\"$(${pkgs.slurp}/bin/slurp -w 0)\\\" - | ${pkgs.wl-clipboard-rs}/bin/wl-copy\")")
             ];
           }
           {
@@ -119,7 +119,7 @@
           {
             _args = [
               "XF86AudioRaiseVolume"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.wireplumber}/bin/wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+\")")
               {
                 locked = true;
                 repeating = true;
@@ -129,7 +129,7 @@
           {
             _args = [
               "XF86AudioLowerVolume"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-\")")
               {
                 locked = true;
                 repeating = true;
@@ -139,21 +139,21 @@
           {
             _args = [
               "XF86AudioMute"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle\")")
               { locked = true; }
             ];
           }
           {
             _args = [
               "XF86AudioMicMute"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle\")")
               { locked = true; }
             ];
           }
           {
             _args = [
               "XF86MonBrightnessUp"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%+\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.brightnessctl}/bin/brightnessctl -e4 -n2 set 5%+\")")
               {
                 locked = true;
                 repeating = true;
@@ -163,7 +163,7 @@
           {
             _args = [
               "XF86MonBrightnessDown"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"brightnessctl -e4 -n2 set 5%-\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.brightnessctl}/bin/brightnessctl -e4 -n2 set 5%-\")")
               {
                 locked = true;
                 repeating = true;

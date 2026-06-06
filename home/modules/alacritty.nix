@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
   programs.alacritty = {
@@ -13,7 +13,7 @@
         opacity = 0.8;
       };
       font.size = 14;
-      terminal.shell = "nu";
+      terminal.shell = "${pkgs.nushell}/bin/nu";
       mouse.hide_when_typing = true;
     };
   };

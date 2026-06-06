@@ -8,14 +8,10 @@
     packages = with pkgs; [
       hyprpicker
       tree
-      grim
-      slurp
-      wl-clipboard-rs
-      brightnessctl
       inter
       nerd-fonts.jetbrains-mono
     ];
-    sessionVariables.LESSHISTFILE = "-"; # Disable less history.
+    sessionVariables.LESSHISTFILE = "-"; # Disable `less` history.
   };
 
   catppuccin = {
