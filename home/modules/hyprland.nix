@@ -63,7 +63,7 @@
           {
             _args = [
               "${mod} + ESCAPE"
-              (lib.generators.mkLuaInline "hl.dsp.exit()")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.hyprshutdown}/bin/hyprshutdown\")")
             ];
           }
           {
