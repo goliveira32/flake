@@ -23,6 +23,7 @@
     {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         modules = [
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
           ./core
           home-manager.nixosModules.default
           {
