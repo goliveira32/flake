@@ -171,22 +171,29 @@
             ];
           }
         ]
-        ++
+        ++ lib.flatten (
           map
-            (dir: {
-              _args = [
-                "${mod} + ${dir}"
-                (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"${dir}\" })")
-              ];
-            })
+            (dir: [
+              {
+                _args = [
+                  "${mod} + ${dir}"
+                  (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"${dir}\" })")
+                ];
+              }
+              {
+                _args = [
+                  "${mod} + SHIFT + ${dir}"
+                  (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"${dir}\" })")
+                ];
+              }
+            ])
             [
               "left"
               "right"
               "up"
               "down"
             ]
-        ++ lib.flatten (
-          map (num: [
+          ++ map (num: [
             {
               _args = [
                 "${mod} + ${toString (lib.mod num 10)}"
