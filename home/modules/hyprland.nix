@@ -170,6 +170,18 @@
               }
             ];
           }
+          {
+            _args = [
+              "${mod} + SHIFT + left"
+              (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e-1\" })")
+            ];
+          }
+          {
+            _args = [
+              "${mod} + SHIFT + right"
+              (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
+            ];
+          }
         ]
         ++ lib.flatten (
           map
@@ -182,7 +194,7 @@
               }
               {
                 _args = [
-                  "${mod} + SHIFT + ${dir}"
+                  "${mod} + CTRL + ${dir}"
                   (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"${dir}\" })")
                 ];
               }
@@ -202,7 +214,7 @@
             }
             {
               _args = [
-                "${mod} + SHIFT + ${toString (lib.mod num 10)}"
+                "${mod} + CTRL + ${toString (lib.mod num 10)}"
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = ${toString num} })")
               ];
             }
