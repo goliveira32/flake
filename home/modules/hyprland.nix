@@ -6,7 +6,11 @@
     configType = "lua";
     settings =
       let
-        mod = "SUPER";
+        modifiers = {
+          primary = "SUPER";
+          secondary = "ALT";
+          auxiliary = "CTRL";
+        };
         terminal = "${pkgs.alacritty}/bin/alacritty";
         browser = "${pkgs.flatpak}/bin/flatpak run org.mozilla.firefox";
         menu = "${pkgs.procps}/bin/pkill rofi || ${pkgs.rofi}/bin/rofi -show drun";
@@ -38,61 +42,61 @@
         bind = [
           {
             _args = [
-              "${mod} + RETURN"
+              "${modifiers.primary} + RETURN"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${terminal}\")")
             ];
           }
           {
             _args = [
-              "${mod} + B"
+              "${modifiers.primary} + B"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${browser}\")")
             ];
           }
           {
             _args = [
-              "${mod} + SUPER_L"
+              "${modifiers.primary} + SUPER_L"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${menu}\")")
             ];
           }
           {
             _args = [
-              "${mod} + L"
+              "${modifiers.primary} + L"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${lock}\")")
             ];
           }
           {
             _args = [
-              "${mod} + ESCAPE"
+              "${modifiers.primary} + ESCAPE"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.hyprshutdown}/bin/hyprshutdown\")")
             ];
           }
           {
             _args = [
-              "${mod} + Q"
+              "${modifiers.primary} + Q"
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
             ];
           }
           {
             _args = [
-              "${mod} + F"
+              "${modifiers.primary} + F"
               (lib.generators.mkLuaInline "hl.dsp.window.float({ action = \"toggle\" })")
             ];
           }
           {
             _args = [
-              "${mod} + P"
+              "${modifiers.primary} + P"
               (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")
             ];
           }
           {
             _args = [
-              "${mod} + J"
+              "${modifiers.primary} + J"
               (lib.generators.mkLuaInline "hl.dsp.layout(\"togglesplit\")")
             ];
           }
           {
             _args = [
-              "${mod} + PRINT"
+              "${modifiers.primary} + PRINT"
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard-rs}/bin/wl-copy\")")
             ];
           }
@@ -104,14 +108,14 @@
           }
           {
             _args = [
-              "${mod} + mouse:272"
+              "${modifiers.primary} + mouse:272"
               (lib.generators.mkLuaInline "hl.dsp.window.drag()")
               { mouse = true; }
             ];
           }
           {
             _args = [
-              "${mod} + mouse:273"
+              "${modifiers.primary} + mouse:273"
               (lib.generators.mkLuaInline "hl.dsp.window.resize()")
               { mouse = true; }
             ];
@@ -172,13 +176,13 @@
           }
           {
             _args = [
-              "${mod} + SHIFT + left"
+              "${modifiers.primary} + left"
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e-1\" })")
             ];
           }
           {
             _args = [
-              "${mod} + SHIFT + right"
+              "${modifiers.primary} + right"
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
             ];
           }
@@ -188,13 +192,13 @@
             (dir: [
               {
                 _args = [
-                  "${mod} + ${dir}"
+                  "${modifiers.secondary} + ${dir}"
                   (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"${dir}\" })")
                 ];
               }
               {
                 _args = [
-                  "${mod} + CTRL + ${dir}"
+                  "${modifiers.secondary} + ${modifiers.auxiliary} + ${dir}"
                   (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"${dir}\" })")
                 ];
               }
@@ -208,13 +212,13 @@
           ++ map (num: [
             {
               _args = [
-                "${mod} + ${toString (lib.mod num 10)}"
+                "${modifiers.primary} + ${toString (lib.mod num 10)}"
                 (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = ${toString num} })")
               ];
             }
             {
               _args = [
-                "${mod} + CTRL + ${toString (lib.mod num 10)}"
+                "${modifiers.primary} + ${modifiers.auxiliary} + ${toString (lib.mod num 10)}"
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = ${toString num} })")
               ];
             }
