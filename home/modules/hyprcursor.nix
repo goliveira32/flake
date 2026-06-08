@@ -1,6 +1,6 @@
 { ... }:
-{
 
+{
   home.pointerCursor = {
     size = 26;
     hyprcursor = {
@@ -14,5 +14,4 @@
     accent = "flamingo";
     flavor = "mocha";
   };
-
 }

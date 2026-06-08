@@ -1,6 +1,6 @@
 { pkgs, ... }:
-{
 
+{
   xdg = {
     desktopEntries = {
       pdf-handler = {
@@ -34,5 +34,4 @@
       ];
     };
   };
-
 }

@@ -1,6 +1,6 @@
 { meta, ... }:
-{
 
+{
   networking = {
     hostName = meta.system.hostname;
     wireless.iwd.enable = true;
@@ -14,5 +14,4 @@
       Domains = [ "~." ];
     };
   };
-
 }

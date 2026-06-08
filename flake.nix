@@ -1,5 +1,4 @@
 {
-
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     catppuccin.url = "github:catppuccin/nix";
@@ -44,5 +43,4 @@
         specialArgs = { inherit meta; };
       };
     };
-
 }

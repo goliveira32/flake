@@ -1,6 +1,6 @@
 { ... }:
-{
 
+{
   programs.opencode = {
     enable = true;
     settings = {
@@ -8,5 +8,4 @@
       permission."*" = "ask";
     };
   };
-
 }

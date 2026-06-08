@@ -1,6 +1,6 @@
 { pkgs, meta, ... }:
-{
 
+{
   imports = [ ./modules ];
 
   home = {
@@ -11,7 +11,7 @@
       inter
       nerd-fonts.jetbrains-mono
     ];
-    sessionVariables.LESSHISTFILE = "-"; # Disable `less` history.
+    sessionVariables.LESSHISTFILE = "-"; # Disable `less` history
   };
 
   catppuccin = {
@@ -20,5 +20,4 @@
     accent = "flamingo";
     flavor = "mocha";
   };
-
 }

@@ -1,6 +1,6 @@
 { meta, ... }:
-{
 
+{
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -16,5 +16,4 @@
       };
     };
   };
-
 }

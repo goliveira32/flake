@@ -1,6 +1,6 @@
 { pkgs, ... }:
-{
 
+{
   programs.bash = {
     enable = true;
     initExtra = "[[ $(${pkgs.coreutils-full}/bin/tty) =~ ^/dev/pts/[0-9]+$ ]] && eval \"$(${pkgs.starship}/bin/starship init bash)\"";
@@ -11,5 +11,4 @@
       ll = "ls -l";
     };
   };
-
 }

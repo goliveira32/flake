@@ -1,6 +1,6 @@
 { pkgs, ... }:
-{
 
+{
   programs.nushell = {
     enable = true;
     settings = {
@@ -13,5 +13,4 @@
       ll = "ls -l";
     };
   };
-
 }

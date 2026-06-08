@@ -1,6 +1,6 @@
 { assets, ... }:
-{
 
+{
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -11,5 +11,4 @@
       };
     };
   };
-
 }

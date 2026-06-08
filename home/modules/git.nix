@@ -1,6 +1,6 @@
 { meta, ... }:
-{
 
+{
   programs.git = {
     enable = true;
     settings = {
@@ -17,5 +17,4 @@
       key = meta.devel.github.sign;
     };
   };
-
 }

@@ -1,6 +1,6 @@
 { pkgs, ... }:
-{
 
+{
   gtk = {
     enable = true;
     iconTheme = {
@@ -10,5 +10,4 @@
   };
 
   catppuccin.gtk.icon.enable = false;
-
 }

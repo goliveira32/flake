@@ -1,31 +1,23 @@
 { lib, pkgs, ... }:
-{
 
+{
   programs.helix = {
     enable = true;
     defaultEditor = true;
     languages = {
       language-server = {
-        marksman = with pkgs; {
-          command = "${marksman}/bin/marksman";
-        };
-        tombi = with pkgs; {
-          command = "${tombi}/bin/tombi";
-        };
-        rust-analyzer = with pkgs; {
-          command = "${rust-analyzer}/bin/rust-analyzer";
-        };
-        nixd = with pkgs; {
-          command = "${nixd}/bin/nixd";
-        };
+        marksman.command = "${pkgs.marksman}/bin/marksman";
+        tombi.command = "${pkgs.tombi}/bin/tombi";
+        rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        nixd.command = "${pkgs.nixd}/bin/nixd";
       };
       language = [
         {
           name = "markdown";
           soft-wrap.enable = true;
           auto-format = true;
-          formatter = with pkgs; {
-            command = "${prettier}/bin/prettier";
+          formatter = {
+            command = "${pkgs.prettier}/bin/prettier";
             args = [
               "--parser"
               "markdown"
@@ -41,8 +33,8 @@
           name = "toml";
           soft-wrap.enable = true;
           auto-format = true;
-          formatter = with pkgs; {
-            command = "${tombi}/bin/tombi";
+          formatter = {
+            command = "${pkgs.tombi}/bin/tombi";
             args = [
               "format"
               "-"
@@ -53,17 +45,13 @@
         {
           name = "rust";
           auto-format = true;
-          formatter = with pkgs; {
-            command = "${rustfmt}/bin/rustfmt";
-          };
+          formatter.command = "${pkgs.rustfmt}/bin/rustfmt";
           language-servers = [ "rust-analyzer" ];
         }
         {
           name = "nix";
           auto-format = true;
-          formatter = with pkgs; {
-            command = "${nixfmt}/bin/nixfmt";
-          };
+          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
           language-servers = [ "nixd" ];
         }
       ];
@@ -76,5 +64,4 @@
   };
 
   catppuccin.helix.useItalics = true;
-
 }

@@ -1,6 +1,6 @@
 { meta, ... }:
-{
 
+{
   imports = [ ./modules ];
 
   system.stateVersion = meta.system.state;
@@ -9,5 +9,4 @@
     "nix-command"
     "flakes"
   ];
-
 }
