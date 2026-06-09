@@ -12,6 +12,7 @@
       nerd-fonts.jetbrains-mono
     ];
     preferXdgDirectories = true;
+    sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables.LESSHISTFILE = "-"; # Disable `less` history
   };
 
