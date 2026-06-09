@@ -5,8 +5,8 @@
     enable = true;
     settings = {
       user = {
-        name = meta.devel.name;
-        email = meta.devel.email;
+        name = meta.general.name;
+        email = meta.general.email;
       };
       signing = {
         behavior = "own";

@@ -1,3 +1,7 @@
+[general]
+name = "Gonçalo Oliveira"
+email = "goncalo.oliveira@tuta.com"
+
 [system]
 username = "penguin"
 hostname = "linux"
@@ -5,10 +9,6 @@ timezone = "Europe/Lisbon"
 locale = "en_US.UTF-8"
 keymap = "pt-latin1"
 state = "25.11"
-
-[devel]
-name = "Gonçalo Oliveira"
-email = "goncalo.oliveira@tuta.com"
 
 [devel.github]
 auth = "~/.ssh/github_auth"

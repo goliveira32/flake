@@ -6,8 +6,8 @@
     settings = {
       init.defaultBranch = "main";
       user = {
-        name = meta.devel.name;
-        email = meta.devel.email;
+        name = meta.general.name;
+        email = meta.general.email;
       };
       gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
     };
