@@ -2,14 +2,22 @@
 
 {
   xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      setSessionVariables = false;
+      desktop = null;
+      templates = null;
+      publicShare = null;
+    };
     desktopEntries = {
-      pdf-handler = {
-        name = "Default PDF Handler";
+      DocumentViewer = {
+        name = "Default Document Viewer";
         exec = "${pkgs.papers}/bin/papers %F";
         noDisplay = true;
       };
-      image-handler = {
-        name = "Default Image Handler";
+      ImageViewer = {
+        name = "Default Image Viewer";
         exec = "${pkgs.loupe}/bin/loupe %F";
         noDisplay = true;
       };
@@ -17,13 +25,13 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = "pdf-handler.desktop";
-        "image/gif" = "image-handler.desktop";
-        "image/jpeg" = "image-handler.desktop";
-        "image/png" = "image-handler.desktop";
-        "image/svg+xml" = "image-handler.desktop";
-        "image/svg+xml-compressed" = "image-handler.desktop";
-        "image/webp" = "image-handler.desktop";
+        "application/pdf" = "DocumentViewer.desktop";
+        "image/gif" = "ImageViewer.desktop";
+        "image/jpeg" = "ImageViewer.desktop";
+        "image/png" = "ImageViewer.desktop";
+        "image/svg+xml" = "ImageViewer.desktop";
+        "image/svg+xml-compressed" = "ImageViewer.desktop";
+        "image/webp" = "ImageViewer.desktop";
       };
     };
     portal = {

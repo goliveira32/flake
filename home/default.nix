@@ -11,6 +11,7 @@
       inter
       nerd-fonts.jetbrains-mono
     ];
+    preferXdgDirectories = true;
     sessionVariables.LESSHISTFILE = "-"; # Disable `less` history
   };
 
