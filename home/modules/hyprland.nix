@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  meta,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
@@ -34,7 +39,7 @@
           };
           dwindle.preserve_split = true;
           input = {
-            kb_layout = "pt";
+            kb_layout = meta.system.keymap.graphical;
             sensitivity = 0.7;
             touchpad.natural_scroll = true;
           };
