@@ -12,7 +12,7 @@
         dynamic_padding = true;
         opacity = 0.8;
       };
-      font.size = 14;
+      font.size = 13;
       terminal.shell = "${pkgs.nushell}/bin/nu";
       mouse.hide_when_typing = true;
     };
