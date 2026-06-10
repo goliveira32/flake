@@ -6,6 +6,7 @@
   home = {
     stateVersion = meta.system.state;
     packages = with pkgs; [
+      jetbrains.idea-oss
       hyprpicker
       tree
       inter
