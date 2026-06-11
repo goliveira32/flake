@@ -191,6 +191,18 @@
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
             ];
           }
+          {
+            _args = [
+              "${modifiers.primary} + mouse_up"
+              (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e-1\" })")
+            ];
+          }
+          {
+            _args = [
+              "${modifiers.primary} + mouse_down"
+              (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
+            ];
+          }
         ]
         ++ lib.flatten (
           map
