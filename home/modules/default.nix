@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./amberol.nix
     ./bash.nix
     ./dconf.nix
     ./dunst.nix
