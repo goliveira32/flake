@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, meta, ... }:
 
 {
   programs.rofi = {
@@ -18,7 +18,7 @@
           width = 550;
           border = 2;
           border-radius = 10;
-          border-color = mkLiteral "@flamingo";
+          border-color = mkLiteral "@${meta.theme.accent}";
           background-color = mkLiteral "#1e1e2ecc"; # Manually set @base with 80% opacity
         };
         mainbox.padding = 8;

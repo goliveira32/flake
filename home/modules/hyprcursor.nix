@@ -1,4 +1,4 @@
-{ ... }:
+{ meta, ... }:
 
 {
   home.pointerCursor = {
@@ -11,7 +11,7 @@
 
   catppuccin.cursors = {
     enable = true;
-    accent = "flamingo";
-    flavor = "mocha";
+    accent = meta.theme.accent;
+    flavor = meta.theme.flavor;
   };
 }

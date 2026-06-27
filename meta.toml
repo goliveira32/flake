@@ -13,6 +13,10 @@ state = "25.11"
 console = "pt-latin1"
 graphical = "pt"
 
+[theme]
+accent = "flamingo"
+flavor = "mocha"
+
 [devel.github]
 auth = "~/.ssh/github_auth"
 sign = "~/.ssh/github_sign.pub"

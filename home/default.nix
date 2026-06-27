@@ -21,7 +21,7 @@
   catppuccin = {
     enable = true;
     autoEnable = true;
-    accent = "flamingo";
-    flavor = "mocha";
+    accent = meta.theme.accent;
+    flavor = meta.theme.flavor;
   };
 }
