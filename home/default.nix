@@ -7,6 +7,7 @@
     stateVersion = meta.system.state;
     packages = with pkgs; [
       jetbrains.idea
+      terraform
       hyprpicker
       tree
       inter
