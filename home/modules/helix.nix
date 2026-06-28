@@ -10,6 +10,7 @@
         tombi.command = "${pkgs.tombi}/bin/tombi";
         rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         nixd.command = "${pkgs.nixd}/bin/nixd";
+        terraform-ls.command = "${pkgs.terraform-ls}/bin/terraform-ls";
       };
       language = [
         {
@@ -53,6 +54,11 @@
           auto-format = true;
           formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
           language-servers = [ "nixd" ];
+        }
+        {
+          name = "hcl";
+          auto-format = true;
+          language-servers = [ "terraform-ls" ];
         }
       ];
     };
