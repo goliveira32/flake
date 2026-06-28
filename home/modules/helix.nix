@@ -34,13 +34,6 @@
           name = "toml";
           soft-wrap.enable = true;
           auto-format = true;
-          formatter = {
-            command = "${pkgs.tombi}/bin/tombi";
-            args = [
-              "format"
-              "-"
-            ];
-          };
           language-servers = [ "tombi" ];
         }
         {
