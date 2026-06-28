@@ -8,6 +8,7 @@
     packages = with pkgs; [
       jetbrains.idea
       terraform
+      hcloud
       hyprpicker
       tree
       inter
