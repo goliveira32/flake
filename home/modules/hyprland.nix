@@ -89,6 +89,12 @@
           }
           {
             _args = [
+              "${modifiers.primary} + R"
+              (lib.generators.mkLuaInline "hl.dsp.submap(\"resize\")")
+            ];
+          }
+          {
+            _args = [
               "${modifiers.primary} + P"
               (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")
             ];
@@ -241,6 +247,20 @@
             }
           ]) (lib.range 1 10)
         );
+        define_submap = {
+          _args = [
+            "resize"
+            (lib.generators.mkLuaInline ''
+              function()
+                hl.bind("left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
+                hl.bind("right", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+                hl.bind("up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
+                hl.bind("down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
+                hl.bind("ESCAPE", hl.dsp.submap("reset"))
+              end
+            '')
+          ];
+        };
         layer_rule = {
           match.namespace = "rofi";
           blur = true;
