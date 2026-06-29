@@ -10,7 +10,6 @@
     ./fonts.nix
     ./gh.nix
     ./git.nix
-    ./gtk.nix
     ./helix.nix
     ./hyprcursor.nix
     ./hyprland.nix
