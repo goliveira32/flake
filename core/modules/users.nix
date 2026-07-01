@@ -3,7 +3,10 @@
 {
   users.users.${meta.system.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "libvirtd"
+    ];
     description = meta.general.name;
   };
 
