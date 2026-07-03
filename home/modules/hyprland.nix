@@ -187,13 +187,13 @@
           }
           {
             _args = [
-              "${modifiers.primary} + left"
+              "${modifiers.primary} + LEFT"
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e-1\" })")
             ];
           }
           {
             _args = [
-              "${modifiers.primary} + right"
+              "${modifiers.primary} + RIGHT"
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
             ];
           }
@@ -213,13 +213,13 @@
           # TODO: Limit available workspaces.
           {
             _args = [
-              "${modifiers.primary} + ${modifiers.auxiliary} + left"
+              "${modifiers.primary} + ${modifiers.auxiliary} + LEFT"
               (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = \"-1\" })")
             ];
           }
           {
             _args = [
-              "${modifiers.primary} + ${modifiers.auxiliary} + right"
+              "${modifiers.primary} + ${modifiers.auxiliary} + RIGHT"
               (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = \"+1\" })")
             ];
           }
@@ -229,13 +229,13 @@
             (dir: [
               {
                 _args = [
-                  "${modifiers.secondary} + ${dir}"
+                  "${modifiers.secondary} + ${lib.toUpper dir}"
                   (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"${dir}\" })")
                 ];
               }
               {
                 _args = [
-                  "${modifiers.secondary} + ${modifiers.auxiliary} + ${dir}"
+                  "${modifiers.secondary} + ${modifiers.auxiliary} + ${lib.toUpper dir}"
                   (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"${dir}\" })")
                 ];
               }
@@ -266,10 +266,10 @@
             "resize"
             (lib.generators.mkLuaInline ''
               function()
-                hl.bind("left", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
-                hl.bind("right", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
-                hl.bind("up", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
-                hl.bind("down", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
+                hl.bind("LEFT", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
+                hl.bind("RIGHT", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+                hl.bind("UP", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
+                hl.bind("DOWN", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
                 hl.bind("ESCAPE", hl.dsp.submap("reset"))
               end
             '')
