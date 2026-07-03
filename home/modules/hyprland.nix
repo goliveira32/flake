@@ -209,6 +209,20 @@
               (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = \"e+1\" })")
             ];
           }
+
+          # TODO: Limit available workspaces.
+          {
+            _args = [
+              "${modifiers.primary} + ${modifiers.auxiliary} + left"
+              (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = \"-1\" })")
+            ];
+          }
+          {
+            _args = [
+              "${modifiers.primary} + ${modifiers.auxiliary} + right"
+              (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = \"+1\" })")
+            ];
+          }
         ]
         ++ lib.flatten (
           map
