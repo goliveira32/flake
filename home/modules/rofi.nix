@@ -19,7 +19,7 @@
           border = 2;
           border-radius = 10;
           border-color = mkLiteral "@${meta.theme.accent}";
-          background-color = mkLiteral "#1e1e2ecc"; # Manually set @base with 80% opacity
+          background-color = mkLiteral "#1e1e2ecc"; # Manually set @base with 80% opacity.
         };
         mainbox.padding = 8;
         inputbar = {
@@ -43,7 +43,7 @@
         };
         "element.normal.normal".background-color = mkLiteral "inherit";
         "element.alternate.normal".background-color = mkLiteral "inherit";
-        "element.selected.normal".background-color = mkLiteral "#6c708680"; # Manually set @overlay0 with 50% opacity
+        "element.selected.normal".background-color = mkLiteral "#6c708680"; # Manually set @overlay0 with 50% opacity.
         element-text.text-color = mkLiteral "@text";
       };
   };

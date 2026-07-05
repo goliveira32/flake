@@ -16,7 +16,7 @@
     ];
     preferXdgDirectories = true;
     sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables.LESSHISTFILE = "-"; # Disable `less` history
+    sessionVariables.LESSHISTFILE = "-"; # Disable `less` history.
   };
 
   catppuccin = {
