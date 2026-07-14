@@ -2,6 +2,7 @@
 
 {
   home.pointerCursor = {
+    enable = true;
     size = 26;
     hyprcursor = {
       enable = true;
