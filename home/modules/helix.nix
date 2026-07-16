@@ -55,11 +55,6 @@
         }
       ];
     };
-    settings.theme = lib.mkForce "custom";
-    themes.custom = {
-      inherits = "catppuccin-mocha";
-      "ui.background" = { };
-    };
   };
 
   catppuccin.helix.useItalics = true;
