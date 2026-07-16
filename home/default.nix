@@ -11,8 +11,6 @@
       hcloud
       hyprpicker
       tree
-      inter
-      nerd-fonts.jetbrains-mono
     ];
     preferXdgDirectories = true;
     sessionPath = [ "$HOME/.local/bin" ];

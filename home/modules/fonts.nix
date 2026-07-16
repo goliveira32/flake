@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   fonts.fontconfig = {
@@ -8,4 +8,8 @@
       monospace = [ "JetBrains Mono NF" ];
     };
   };
+  home.packages = with pkgs; [
+    inter
+    nerd-fonts.jetbrains-mono
+  ];
 }
