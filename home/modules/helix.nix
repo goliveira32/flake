@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.helix = {
@@ -7,6 +7,7 @@
     languages = {
       language-server = {
         marksman.command = "${pkgs.marksman}/bin/marksman";
+        typescript-language-server.command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
         tombi.command = "${pkgs.tombi}/bin/tombi";
         rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         nixd.command = "${pkgs.nixd}/bin/nixd";
@@ -29,6 +30,11 @@
         {
           name = "typst";
           soft-wrap.enable = true;
+        }
+        {
+          name = "typescript";
+          auto-format = true;
+          language-servers = [ "typescript-language-server" ];
         }
         {
           name = "toml";
