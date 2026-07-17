@@ -6,10 +6,14 @@
   home = {
     stateVersion = meta.system.state;
     packages = with pkgs; [
-      jetbrains.idea
-      terraform
+      adwaita-icon-theme # Standard fallback for GNOME icons.
       hcloud
+      hicolor-icon-theme # Ultimate fallback for generic icons.
       hyprpicker
+      jetbrains.idea
+      loupe
+      papers
+      terraform
       tree
     ];
     preferXdgDirectories = true;
