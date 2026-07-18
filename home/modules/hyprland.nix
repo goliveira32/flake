@@ -34,7 +34,8 @@
             resize_on_border = true;
           };
           decoration = {
-            rounding = 10;
+            rounding = 12;
+            rounding_power = 4.0;
             blur.size = 3;
           };
           dwindle.preserve_split = true;
