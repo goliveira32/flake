@@ -6,7 +6,7 @@
     font = "Sans Serif 14";
     modes = [ "drun" ];
     extraConfig = {
-      display-drun = "  ";
+      display-drun = " ";
       show-icons = true;
     };
     theme =
