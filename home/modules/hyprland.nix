@@ -17,7 +17,7 @@
           auxiliary = "CTRL";
         };
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        browser = "${pkgs.flatpak}/bin/flatpak run org.mozilla.firefox";
+        browser = "${pkgs.firefox}/bin/firefox";
         menu = "${pkgs.procps}/bin/pkill rofi || ${pkgs.rofi}/bin/rofi -show drun";
         lock = "${pkgs.hyprlock}/bin/hyprlock";
       in

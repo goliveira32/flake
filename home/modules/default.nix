@@ -7,6 +7,7 @@
     ./bash.nix
     ./dconf.nix
     ./dunst.nix
+    ./firefox.nix
     ./fonts.nix
     ./gh.nix
     ./git.nix
